@@ -227,7 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   const ButtonSegment(
                     value: Duration(seconds: 1),
-                    label: Text('1s'),
+                    label: Text('1sec'),
                   ),
                 ],
                 selected: {sensorInterval},
