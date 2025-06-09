@@ -17,7 +17,7 @@ class _LocationPageState extends State<LocationPage> {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       setState(() {
-        location = 'Location services are disabled.';
+        location = 'Location services are disabled...';
       });
       return;
     }
