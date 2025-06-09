@@ -47,6 +47,7 @@ import 'package:flutter/material.dart';
 import 'package:officeproject_first/autocompletesearch.dart';
 import 'package:officeproject_first/example1.dart';
 import 'package:officeproject_first/fileuploader.dart';
+import 'package:officeproject_first/gps.dart';
 import 'package:officeproject_first/home.dart';
 import 'package:officeproject_first/quiz.dart';
 import 'package:officeproject_first/searchselect.dart';
@@ -88,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => LocationPage()),
       );
     });
   }
