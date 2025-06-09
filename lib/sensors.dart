@@ -16,33 +16,33 @@ import 'snake.dart';
 //   runApp(const MyApp());
 // }
 
-class MySensor extends StatelessWidget {
-  const MySensor({super.key});
+// class MySensor extends StatelessWidget {
+//   const MySensor({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Sensors Demo',
+//       theme: ThemeData(
+//         useMaterial3: true,
+//         colorSchemeSeed: const Color(0x9f4376f8),
+//       ),
+//       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+//     );
+//   }
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sensors Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: const Color(0x9f4376f8),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, this.title});
+class MySensor extends StatefulWidget {
+  const MySensor({super.key, this.title});
 
   final String? title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MySensor> createState() => _MySensorState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MySensorState extends State<MySensor> {
   static const Duration _ignoreDuration = Duration(milliseconds: 20);
 
   static const int _snakeRows = 20;
@@ -72,182 +72,194 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Sensors Plus Example'), elevation: 4),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Center(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                border: Border.all(width: 1.0, color: Colors.black38),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: Text('Sensors Plus Example'), elevation: 4),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Center(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1.0, color: Colors.black38),
+                ),
+                child: SizedBox(
+                  height: _snakeRows * _snakeCellSize,
+                  width: _snakeColumns * _snakeCellSize,
+                  child: Snake(
+                    rows: _snakeRows,
+                    columns: _snakeColumns,
+                    cellSize: _snakeCellSize,
+                  ),
+                ),
               ),
-              child: SizedBox(
-                height: _snakeRows * _snakeCellSize,
-                width: _snakeColumns * _snakeCellSize,
-                child: Snake(
-                  rows: _snakeRows,
-                  columns: _snakeColumns,
-                  cellSize: _snakeCellSize,
-                ),
-              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            child: Table(
-              columnWidths: const {
-                0: FlexColumnWidth(4),
-                4: FlexColumnWidth(2),
-              },
-              children: [
-                const TableRow(
-                  children: [
-                    SizedBox.shrink(),
-                    Text('X'),
-                    Text('Y'),
-                    Text('Z'),
-                    Text('Interval'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text('UserAccelerometer'),
-                    ),
-                    Text(_userAccelerometerEvent?.x.toStringAsFixed(1) ?? '?'),
-                    Text(_userAccelerometerEvent?.y.toStringAsFixed(1) ?? '?'),
-                    Text(_userAccelerometerEvent?.z.toStringAsFixed(1) ?? '?'),
-                    Text(
-                      '${_userAccelerometerLastInterval?.toString() ?? '?'} ms',
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text('Accelerometer'),
-                    ),
-                    Text(_accelerometerEvent?.x.toStringAsFixed(1) ?? '?'),
-                    Text(_accelerometerEvent?.y.toStringAsFixed(1) ?? '?'),
-                    Text(_accelerometerEvent?.z.toStringAsFixed(1) ?? '?'),
-                    Text('${_accelerometerLastInterval?.toString() ?? '?'} ms'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text('Gyroscope'),
-                    ),
-                    Text(_gyroscopeEvent?.x.toStringAsFixed(1) ?? '?'),
-                    Text(_gyroscopeEvent?.y.toStringAsFixed(1) ?? '?'),
-                    Text(_gyroscopeEvent?.z.toStringAsFixed(1) ?? '?'),
-                    Text('${_gyroscopeLastInterval?.toString() ?? '?'} ms'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text('Magnetometer'),
-                    ),
-                    Text(_magnetometerEvent?.x.toStringAsFixed(1) ?? '?'),
-                    Text(_magnetometerEvent?.y.toStringAsFixed(1) ?? '?'),
-                    Text(_magnetometerEvent?.z.toStringAsFixed(1) ?? '?'),
-                    Text('${_magnetometerLastInterval?.toString() ?? '?'} ms'),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
-            child: Table(
-              columnWidths: const {
-                0: FlexColumnWidth(4),
-                1: FlexColumnWidth(3),
-                2: FlexColumnWidth(2),
-              },
-              children: [
-                const TableRow(
-                  children: [
-                    SizedBox.shrink(),
-                    Text('Pressure'),
-                    Text('Interval'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text('Barometer'),
-                    ),
-                    Text(
-                      '${_barometerEvent?.pressure.toStringAsFixed(1) ?? '?'} hPa',
-                    ),
-                    Text('${_barometerLastInterval?.toString() ?? '?'} ms'),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Update Interval:'),
-              SegmentedButton(
-                segments: [
-                  ButtonSegment(
-                    value: SensorInterval.gameInterval,
-                    label: Text(
-                      'Game\n'
-                      '(${SensorInterval.gameInterval.inMilliseconds}ms)',
-                    ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+              child: Table(
+                columnWidths: const {
+                  0: FlexColumnWidth(4),
+                  4: FlexColumnWidth(2),
+                },
+                children: [
+                  const TableRow(
+                    children: [
+                      SizedBox.shrink(),
+                      Text('X'),
+                      Text('Y'),
+                      Text('Z'),
+                      Text('Interval'),
+                    ],
                   ),
-                  ButtonSegment(
-                    value: SensorInterval.uiInterval,
-                    label: Text(
-                      'UI\n'
-                      '(${SensorInterval.uiInterval.inMilliseconds}ms)',
-                    ),
+                  TableRow(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('UserAccelerometer'),
+                      ),
+                      Text(
+                        _userAccelerometerEvent?.x.toStringAsFixed(1) ?? '?',
+                      ),
+                      Text(
+                        _userAccelerometerEvent?.y.toStringAsFixed(1) ?? '?',
+                      ),
+                      Text(
+                        _userAccelerometerEvent?.z.toStringAsFixed(1) ?? '?',
+                      ),
+                      Text(
+                        '${_userAccelerometerLastInterval?.toString() ?? '?'} ms',
+                      ),
+                    ],
                   ),
-                  ButtonSegment(
-                    value: SensorInterval.normalInterval,
-                    label: Text(
-                      'Normal\n'
-                      '(${SensorInterval.normalInterval.inMilliseconds}ms)',
-                    ),
+                  TableRow(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('Accelerometer'),
+                      ),
+                      Text(_accelerometerEvent?.x.toStringAsFixed(1) ?? '?'),
+                      Text(_accelerometerEvent?.y.toStringAsFixed(1) ?? '?'),
+                      Text(_accelerometerEvent?.z.toStringAsFixed(1) ?? '?'),
+                      Text(
+                        '${_accelerometerLastInterval?.toString() ?? '?'} ms',
+                      ),
+                    ],
                   ),
-                  const ButtonSegment(
-                    value: Duration(milliseconds: 500),
-                    label: Text('500m'),
+                  TableRow(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('Gyroscope'),
+                      ),
+                      Text(_gyroscopeEvent?.x.toStringAsFixed(1) ?? '?'),
+                      Text(_gyroscopeEvent?.y.toStringAsFixed(1) ?? '?'),
+                      Text(_gyroscopeEvent?.z.toStringAsFixed(1) ?? '?'),
+                      Text('${_gyroscopeLastInterval?.toString() ?? '?'} ms'),
+                    ],
                   ),
-                  const ButtonSegment(
-                    value: Duration(seconds: 1),
-                    label: Text('1sec'),
+                  TableRow(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('Magnetometer'),
+                      ),
+                      Text(_magnetometerEvent?.x.toStringAsFixed(1) ?? '?'),
+                      Text(_magnetometerEvent?.y.toStringAsFixed(1) ?? '?'),
+                      Text(_magnetometerEvent?.z.toStringAsFixed(1) ?? '?'),
+                      Text(
+                        '${_magnetometerLastInterval?.toString() ?? '?'} ms',
+                      ),
+                    ],
                   ),
                 ],
-                selected: {sensorInterval},
-                showSelectedIcon: false,
-                onSelectionChanged: (value) {
-                  setState(() {
-                    sensorInterval = value.first;
-                    userAccelerometerEventStream(
-                      samplingPeriod: sensorInterval,
-                    );
-                    accelerometerEventStream(samplingPeriod: sensorInterval);
-                    gyroscopeEventStream(samplingPeriod: sensorInterval);
-                    magnetometerEventStream(samplingPeriod: sensorInterval);
-                    barometerEventStream(samplingPeriod: sensorInterval);
-                  });
-                },
               ),
-            ],
-          ),
-        ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
+              child: Table(
+                columnWidths: const {
+                  0: FlexColumnWidth(4),
+                  1: FlexColumnWidth(3),
+                  2: FlexColumnWidth(2),
+                },
+                children: [
+                  const TableRow(
+                    children: [
+                      SizedBox.shrink(),
+                      Text('Pressure'),
+                      Text('Interval'),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text('Barometer'),
+                      ),
+                      Text(
+                        '${_barometerEvent?.pressure.toStringAsFixed(1) ?? '?'} hPa',
+                      ),
+                      Text('${_barometerLastInterval?.toString() ?? '?'} ms'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('Update Interval:'),
+                SegmentedButton(
+                  segments: [
+                    ButtonSegment(
+                      value: SensorInterval.gameInterval,
+                      label: Text(
+                        'Game\n'
+                        '(${SensorInterval.gameInterval.inMilliseconds}ms)',
+                      ),
+                    ),
+                    ButtonSegment(
+                      value: SensorInterval.uiInterval,
+                      label: Text(
+                        'UI\n'
+                        '(${SensorInterval.uiInterval.inMilliseconds}ms)',
+                      ),
+                    ),
+                    ButtonSegment(
+                      value: SensorInterval.normalInterval,
+                      label: Text(
+                        'Normal\n'
+                        '(${SensorInterval.normalInterval.inMilliseconds}ms)',
+                      ),
+                    ),
+                    const ButtonSegment(
+                      value: Duration(milliseconds: 500),
+                      label: Text('500m'),
+                    ),
+                    const ButtonSegment(
+                      value: Duration(seconds: 1),
+                      label: Text('1sec'),
+                    ),
+                  ],
+                  selected: {sensorInterval},
+                  showSelectedIcon: false,
+                  onSelectionChanged: (value) {
+                    setState(() {
+                      sensorInterval = value.first;
+                      userAccelerometerEventStream(
+                        samplingPeriod: sensorInterval,
+                      );
+                      accelerometerEventStream(samplingPeriod: sensorInterval);
+                      gyroscopeEventStream(samplingPeriod: sensorInterval);
+                      magnetometerEventStream(samplingPeriod: sensorInterval);
+                      barometerEventStream(samplingPeriod: sensorInterval);
+                    });
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
