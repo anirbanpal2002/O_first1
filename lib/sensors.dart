@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   const ButtonSegment(
                     value: Duration(milliseconds: 500),
-                    label: Text('500msec'),
+                    label: Text('500m'),
                   ),
                   const ButtonSegment(
                     value: Duration(seconds: 1),
