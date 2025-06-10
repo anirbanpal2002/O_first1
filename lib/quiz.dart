@@ -116,6 +116,7 @@ class _ContactListPageState extends State<ContactListPage> {
           );
         },
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddContactDialog,
         child: Icon(Icons.add),
