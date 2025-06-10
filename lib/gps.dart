@@ -36,7 +36,7 @@ class _LocationPageState extends State<LocationPage> {
 
     if (permission == LocationPermission.deniedForever) {
       setState(() {
-        location = 'Location permissions are permanently denied.';
+        location = 'Location permissions are permanently denied...';
       });
       return;
     }
