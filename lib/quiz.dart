@@ -93,7 +93,11 @@ class _ContactListPageState extends State<ContactListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Contacts'), backgroundColor: Colors.green),
+      appBar: AppBar(
+        title: Text('Contacts'),
+        backgroundColor: Colors.green,
+        elevation: 4,
+      ),
       body: ListView.builder(
         itemCount: contacts.length,
         itemBuilder: (context, index) {
