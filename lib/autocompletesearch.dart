@@ -22,7 +22,7 @@ class _AutocompletesearchState extends State<Autocompletesearch> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Autocompletesearch"),
+          title: Text("Auto complete search"),
           backgroundColor: Colors.blueAccent,
         ),
         body: Padding(
